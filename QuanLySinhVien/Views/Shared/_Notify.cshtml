@@ -1,0 +1,16 @@
+﻿<div class="alert alert-@TempData["AlertType"] alert-dismissible" id="notifyId" role="alert">
+    @TempData["AlertMessage"]
+</div>
+<script>
+    var alertBox = document.getElementById("notifyId");
+    alertBox.style.display = "@(TempData["AlertMessage"] == null?"none":"")";
+    var countDown = 3;
+    var timer = setInterval(function () {
+        countDown--;
+        if (countDown == 0) {
+            clearInterval(timer);
+            alertBox.style.display = "none";
+        }
+    }, 1000);
+</script>
+

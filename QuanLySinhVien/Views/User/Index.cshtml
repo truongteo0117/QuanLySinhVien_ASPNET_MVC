@@ -1,0 +1,51 @@
+﻿@model IEnumerable<QuanLySinhVien.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoleId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SinhVien.MaSV)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @item.Role.RoleName
+        </td>
+        <td>
+            @item.SinhVien.MaSV
+        </td>
+        <td>
+            @(item.IsActive?"Đang Hoạt Động":"Không Hoạt Động")
+        </td>
+        <td>
+            @Html.ActionLink("ResetPassword", "ResetPassword", new { id=item.UserId }) |
+            @Html.ActionLink("Permission", "Permission", new { id=item.UserId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.UserId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<QuanLySinhVien.Models.DangKyLopHoc>
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h4>Lớp học đã đăng ký</h4>
+<hr />
+
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.SinhVien.HoTen)</th>
+        <th>
+            @Html.DisplayNameFor(model => model.MonHoc.TenMonHoc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MonHoc.TinChiMon)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.SinhVien.HoTen</td>
+            <td>@item.MonHoc.TenMonHoc</td>
+            <td>@item.MonHoc.TinChiMon</td>
+            <td>@Html.ActionLink("Delete", "Delete", new { id = item.DangKyId })</td>
+        </tr>
+    }
+    <tr>
+        <td></td>
+        <td>@(ViewBag.Total!=null?"Tổng số tín chỉ" + @ViewBag.Total:"")</td>
+        <td></td>
+    </tr>
+
+
+
+</table>

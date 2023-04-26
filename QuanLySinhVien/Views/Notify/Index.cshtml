@@ -1,0 +1,14 @@
+﻿@model IEnumerable<QuanLySinhVien.Models.ThongBao>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Thông Báo</h2>@Html.ActionLink("Remove All", "RemoveAllNotify")
+
+@foreach (var item in Model)
+{
+    <div class="alert alert-info">
+        <strong>Nội dung:</strong> @item.NoiDung<p style="float: right">@Html.ActionLink("Delete", "RemoveNotify", new { id = item.ThongBaoId })</p>
+    </div>
+}

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<QuanLySinhVien.Models.SinhVien>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<p id="ExportExcel">
+    @Html.ActionLink("Export Data To Excel", "ExportToExcel")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MaSV)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HoTen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GioiTinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgaySinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LopId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaSV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoTen)
+            </td>
+            <td>
+                @(item.GioiTinh?"Nam":"Nữ")
+            </td>
+            <td>
+                @(item.NgaySinh.ToString("dd-MM-yyyy"))
+            </td>
+            <td>
+                @(item.LopHoc.TenLop)
+            </td>
+            <td>
+                @(item.IsActive?"Đang Hoạt Động":"Ngừng Hoạt Động")
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.StudentId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.StudentId })
+            </td>
+        </tr>
+    }
+
+</table>
+<script>
+    var ExportExcel = document.getElementById("ExportExcel");
+    ExportExcel.style.display = "@(ViewBag.isShowEP==null?"none":"")";
+</script>

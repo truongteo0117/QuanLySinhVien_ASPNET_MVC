@@ -1,0 +1,22 @@
+﻿@model List<QuanLySinhVien.Models.MenuItem>
+
+
+<ul class="navbar-nav flex-grow-1">
+    @foreach (var item in Model)
+    {
+        <li><a href="@(item.Url)" class="nav-link">@item.Name</a></li>
+    }
+</ul>
+<div id="Logout">
+
+    @using (Html.BeginForm("Logout", "Authentication", FormMethod.Post, new { id = "logoutForm" }))
+    {
+        @Html.AntiForgeryToken()
+        <a href="javascript:document.getElementById('logoutForm').submit()">Logout </a><span style="color: white">(@ViewBag.UserName)</span>
+    }
+
+</div>
+<script>
+    var Logout = document.getElementById("Logout");
+    Logout.style.display = "@(ViewBag.UserName==null?"none":"")"
+</script>
